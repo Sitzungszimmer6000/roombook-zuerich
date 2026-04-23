@@ -358,6 +358,40 @@
 </head>
 <body>
 
+<!-- ══ LOGIN ══ -->
+<div id="login-screen" style="position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:9999">
+  <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:48px 40px;width:360px;max-width:95vw;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.08)">
+    <div style="font-size:2rem;margin-bottom:12px">🏢</div>
+    <h2 style="font-family:'DM Serif Display',serif;font-size:1.6rem;margin-bottom:6px">RoomBook</h2>
+    <p style="color:var(--muted);font-size:.88rem;margin-bottom:28px">Bitte melden Sie sich an</p>
+    <input type="password" id="pw-input" placeholder="Passwort" onkeydown="if(event.key==='Enter')checkLogin()"
+      style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:4px;font-family:'DM Sans',sans-serif;font-size:.95rem;margin-bottom:12px;box-sizing:border-box;outline:none">
+    <div id="pw-error" style="color:#c0392b;font-size:.82rem;margin-bottom:10px;display:none">Falsches Passwort. Bitte erneut versuchen.</div>
+    <button onclick="checkLogin()" style="width:100%;padding:12px;background:var(--ink);color:var(--white);border:none;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer">Anmelden</button>
+  </div>
+</div>
+
+<script>
+  // ▼▼▼ PASSWORT HIER ÄNDERN ▼▼▼
+  const PW = "*BusBahnhof2026";
+  // ▲▲▲
+  if (sessionStorage.getItem("rb_auth") === "1") {
+    document.getElementById("login-screen").style.display = "none";
+  }
+  function checkLogin() {
+    const val = document.getElementById("pw-input").value;
+    if (val === PW) {
+      sessionStorage.setItem("rb_auth", "1");
+      document.getElementById("login-screen").style.display = "none";
+    } else {
+      document.getElementById("pw-error").style.display = "block";
+      document.getElementById("pw-input").value = "";
+      document.getElementById("pw-input").focus();
+    }
+  }
+</script>
+
+
 <!-- Setup-Banner (verschwindet sobald Firebase konfiguriert) -->
 <div id="setup-banner">
   ⚠️ <strong>Einrichtung nötig:</strong> Bitte ersetzen Sie die Firebase-Konfiguration in dieser Datei.
