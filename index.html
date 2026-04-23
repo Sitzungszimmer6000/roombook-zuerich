@@ -502,7 +502,7 @@
 // STAMMDATEN – ZÜRICH
 // ══════════════════════════════════════════
 const COMPANIES = {
-  A: { label:'GaE',               color:'#4a7fa5' },
+  A: { label:'Gartenmann Engineering AG', color:'#4a7fa5' },
   B: { label:'WR Architekten AG', color:'#1a3a6e' },
   C: { label:'Schöni AG',         color:'#117a65' },
 };
@@ -520,6 +520,9 @@ function getRooms() { return ROOMS; }
 // ══════════════════════════════════════════
 // STATE
 // ══════════════════════════════════════════
+const TIMES = [];
+for (let h=7; h<=20; h++) { TIMES.push(`${String(h).padStart(2,'0')}:00`); if(h<20) TIMES.push(`${String(h).padStart(2,'0')}:30`); }
+
 let bookings = [];
 let selectedCompany = 'A';
 let selectedRoom    = null;
